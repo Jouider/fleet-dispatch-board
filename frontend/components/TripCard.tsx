@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import { Clock, User, Truck, MoreVertical, Pencil, Trash2, Play, CheckCircle2, XCircle, ArrowRight } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
 import { PriorityBadge } from './PriorityBadge'
@@ -97,14 +96,11 @@ export function TripCard({ trip, onAssign, onEdit, onDeleted, onStatusChange }: 
           <div className="flex items-center justify-between gap-2">
             <PriorityBadge priority={trip.priority} />
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 -mr-1"
-                >
-                  <MoreVertical className="h-3.5 w-3.5" />
-                </Button>
+              <DropdownMenuTrigger
+                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 -mr-1
+                  inline-flex items-center justify-center rounded-md hover:bg-muted text-muted-foreground"
+              >
+                <MoreVertical className="h-3.5 w-3.5" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {canAssign && (
