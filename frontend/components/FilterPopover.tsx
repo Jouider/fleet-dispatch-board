@@ -3,7 +3,6 @@
 import { useState, useMemo } from 'react'
 import { Check, ChevronDown, Search, X } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 export interface FilterOption {
@@ -40,24 +39,23 @@ export function FilterPopover({ label, icon, options, selected, onToggle, onClea
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger>
-        <Button
-          variant="outline"
-          size="sm"
-          className={cn(
-            'h-8 gap-1.5 text-xs font-medium border-border transition-colors',
-            count > 0 && 'border-primary/50 bg-primary/5 text-primary hover:bg-primary/10'
-          )}
-        >
-          {icon}
-          {label}
-          {count > 0 && (
-            <span className="flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold">
-              {count}
-            </span>
-          )}
-          <ChevronDown className={cn('h-3 w-3 text-muted-foreground transition-transform', open && 'rotate-180')} />
-        </Button>
+      <PopoverTrigger
+        className={cn(
+          'inline-flex items-center gap-1.5 h-8 px-3 rounded-md border text-xs font-medium transition-colors',
+          'bg-background hover:bg-muted/60',
+          count > 0
+            ? 'border-primary/50 bg-primary/5 text-primary hover:bg-primary/10'
+            : 'border-border text-foreground'
+        )}
+      >
+        {icon}
+        {label}
+        {count > 0 && (
+          <span className="flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold">
+            {count}
+          </span>
+        )}
+        <ChevronDown className={cn('h-3 w-3 text-muted-foreground transition-transform', open && 'rotate-180')} />
       </PopoverTrigger>
 
       <PopoverContent align="start" className="w-60 p-0 shadow-lg">
