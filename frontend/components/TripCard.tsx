@@ -97,7 +97,7 @@ export function TripCard({ trip, onAssign, onEdit, onDeleted, onStatusChange }: 
           <div className="flex items-center justify-between gap-2">
             <PriorityBadge priority={trip.priority} />
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger>
                 <Button
                   variant="ghost"
                   size="icon"
