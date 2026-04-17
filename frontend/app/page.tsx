@@ -93,13 +93,14 @@ export default function DispatchBoard() {
       </div>
 
       {/* Board */}
-      <div className="flex-1 px-6 py-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="flex-1 min-h-0 overflow-hidden px-6 py-5">
+        <div className="h-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           {COLUMNS.map(({ status, label, color, dot }) => {
             const trips = tripsByStatus[status] ?? []
             return (
-              <div key={status} className="flex flex-col gap-3">
-                <div className={`rounded-lg border px-3 py-2.5 ${color} flex items-center justify-between`}>
+              <div key={status} className="flex flex-col min-h-0 gap-3">
+                {/* Sticky column header */}
+                <div className={`rounded-lg border px-3 py-2.5 ${color} flex items-center justify-between shrink-0`}>
                   <div className="flex items-center gap-2">
                     <span className={`h-2 w-2 rounded-full ${dot}`} />
                     <span className="text-sm font-medium text-foreground">{label}</span>
@@ -109,13 +110,15 @@ export default function DispatchBoard() {
                   </Badge>
                 </div>
 
-                <div className="flex flex-col gap-2 min-h-[200px]">
+                {/* Scrollable card list */}
+                <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-2 pr-1
+                  scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                   {loading ? (
-                    Array.from({ length: 2 }).map((_, i) => (
-                      <Skeleton key={i} className="h-40 rounded-lg bg-muted/40" />
+                    Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-40 rounded-lg bg-muted/40 shrink-0" />
                     ))
                   ) : trips.length === 0 ? (
-                    <div className="flex-1 flex items-center justify-center rounded-lg border border-dashed border-border/50 py-12">
+                    <div className="flex-1 flex items-center justify-center rounded-lg border border-dashed border-border/50 min-h-[120px]">
                       <p className="text-xs text-muted-foreground">No trips</p>
                     </div>
                   ) : (

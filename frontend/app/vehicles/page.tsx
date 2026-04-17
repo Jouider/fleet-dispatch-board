@@ -94,8 +94,8 @@ export default function VehiclesPage() {
   const filtered = filterStatus === 'all' ? vehicles : vehicles.filter(v => v.status === filterStatus)
 
   return (
-    <>
-      <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+    <div className="flex flex-col h-full overflow-hidden">
+      <div className="px-6 py-4 border-b border-border flex items-center justify-between shrink-0">
         <div>
           <h1 className="text-lg font-semibold">Vehicles</h1>
           <p className="text-xs text-muted-foreground mt-0.5">{vehicles.length} vehicles total</p>
@@ -118,7 +118,7 @@ export default function VehiclesPage() {
         </div>
       </div>
 
-      <div className="px-6 py-6">
+      <div className="flex-1 min-h-0 overflow-y-auto px-6 py-6">
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-36 rounded-lg" />)}
@@ -247,6 +247,6 @@ export default function VehiclesPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </div>
   )
 }
